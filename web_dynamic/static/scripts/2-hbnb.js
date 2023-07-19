@@ -1,4 +1,14 @@
 $('document').ready(function () {
+    //when apis active turn red
+    const url = 'http://' + window.location.hostname + ':5001/api/v1/status/';
+    $.get(url, function (response) {
+        if (response.status === 'OK') {
+            $('DIV#api_status').addClass('available');
+        } else {
+            $('DIV#api_status').removeClass('available');
+        }
+    });
+    //display check box on each item
     let amenities = {};
     $('INPUT[type="checkbox"]').change(function () {
         if ($(this).is(':checked')) {
@@ -6,6 +16,11 @@ $('document').ready(function () {
         } else {
             delete amenities[$(this).attr('data-id')];
         }
-        $('.amenities H4').text(Object.values(amenities).join(', '));
+        if (Object.values(amenities).length === 0) {
+            $('.amenities H4').html('&nbsp;');
+        } else {
+            $('.amenities H4').text(Object.values(amenities).join(', '));
+        }
     });
+
 });
