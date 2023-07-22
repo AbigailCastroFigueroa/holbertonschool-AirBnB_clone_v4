@@ -12,11 +12,12 @@ $(document).ready(function () {
     } else {
       // sourcery skip: only-delete-object-properties
       delete (myAmenities[dataId]);
+      
     }
     for (const key in myAmenities) {
       myList.push(myAmenities[key]);
     }
-    const output = myList.join(', ');
+     const output = myList.length > 2 ? myList.slice(0, 3).join(', ') + '...' : myList.join(', ');
     $('div.amenities > h4').text(output);
     myList = [];
   });

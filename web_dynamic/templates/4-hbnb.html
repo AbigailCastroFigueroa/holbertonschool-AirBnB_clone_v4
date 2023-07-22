@@ -43,8 +43,9 @@
 	  <div class="popover">
 	    <ul>
 	      {% for amenity in amenities %}
+		  
 	      <li><input data-id="{{ amenity.id }}" data-name="{{amenity.name}}" type="checkbox">{{ amenity.name }}</li>
-	      {% endfor %}
+		  {% endfor %}
 	    </ul>
 	  </div>
 	</div>
